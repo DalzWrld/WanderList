@@ -14,18 +14,18 @@ export default function App() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/destinations')
+    fetch('http://localhost:3001/destinations')
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
       })
       .then(setDestinations)
-      .catch(() => setError('Could not connect to the server. Is json-server running on port 3000?'))
+      .catch(() => setError('Could not connect to the server. Is json-server running on port 3001?'))
       .finally(() => setLoading(false));
   }, []);
 
   async function handleAdd(formData) {
-    const res = await fetch('http://localhost:3000/destinations', {
+    const res = await fetch('http://localhost:3001/destinations', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json' 
@@ -38,7 +38,7 @@ export default function App() {
   }
 
   async function handleEdit(formData) {
-    const res = await fetch(`${'http://localhost:3000/destinations'}/${formData.id}`, {
+    const res = await fetch(`${'http://localhost:3001/destinations'}/${formData.id}`, {
       method: 'PATCH',
       headers: { 
         'Content-Type': 'application/json' 
@@ -51,7 +51,7 @@ export default function App() {
   }
 
   async function handleDelete(id) {
-    const res = await fetch(`${'http://localhost:3000/destinations'}/${id}`, { method: 'DELETE' });
+    const res = await fetch(`${'http://localhost:3001/destinations'}/${id}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete');
     setDestinations((prev) => prev.filter((d) => d.id !== id));
   }
