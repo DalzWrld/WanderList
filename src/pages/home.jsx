@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
-import DestinationCard from '../components/destination-form';
-import DestinationList from '../components/destination-list';
+import heroImage from '../assets/simon-english-48nerZQCHgo-unsplash.jpg';
 
 export default function Home({ destinations, onDelete }) {
-  const recent = destinations.slice(0, 3);
-  const totalVisited = destinations.filter((d) => d.status === 'Visited').length;
-  const totalWishlist = destinations.filter((d) => d.status === 'Wishlist').length;
-
   return (
     <div className="flex flex-col">
       <section
         className="min-h-140 flex items-center justify-center text-center px-10 py-16"
         style={{
           background: `linear-gradient(to bottom, rgba(4,44,83,0.5) 0%, rgba(4,44,83,0.18) 60%, rgba(234,243,222,0.4) 100%),
-            url('src/assets/simon-english-48nerZQCHgo-unsplash.jpg') center/cover no-repeat`,
+            url(${heroImage}) center/cover no-repeat`,
         }}
       >
         <div className="max-w-xl">
