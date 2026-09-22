@@ -76,7 +76,7 @@ WanderList uses **JSON Server** as its mock backend.
 Open a terminal and run:
 
 ```bash
-npx json-server --watch db.json --port 3001
+npx json-server --watch src/db/db.json --port 3001
 ```
 
 The API will be available at:
