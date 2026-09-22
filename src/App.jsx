@@ -8,24 +8,26 @@ import Destinations from './pages/destinations';
 import AddDestination from './pages/add-destination';
 import EditDestination from './pages/edit-destination';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function App() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/destinations')
+    fetch(`${API_URL}/destinations`)
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
       })
       .then(setDestinations)
-      .catch(() => setError('Could not connect to the server. Is json-server running on port 3000?'))
+      .catch(() => setError('Could not connect to the server. Is json-server running on port 3001?'))
       .finally(() => setLoading(false));
   }, []);
 
   async function handleAdd(formData) {
-    const res = await fetch('http://localhost:3000/destinations', {
+    const res = await fetch(`${API_URL}/destinations`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json' 
@@ -38,7 +40,7 @@ export default function App() {
   }
 
   async function handleEdit(formData) {
-    const res = await fetch(`${'http://localhost:3000/destinations'}/${formData.id}`, {
+    const res = await fetch(`${API_URL}/destinations/${formData.id}`, {
       method: 'PATCH',
       headers: { 
         'Content-Type': 'application/json' 
@@ -51,7 +53,7 @@ export default function App() {
   }
 
   async function handleDelete(id) {
-    const res = await fetch(`${'http://localhost:3000/destinations'}/${id}`, { method: 'DELETE' });
+    const res = await fetch(`${API_URL}/destinations/${id}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete');
     setDestinations((prev) => prev.filter((d) => d.id !== id));
   }
