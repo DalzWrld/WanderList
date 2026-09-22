@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import heroImage from '../assets/simon-english-48nerZQCHgo-unsplash.jpg';
 
-export default function Home({ destinations, onDelete }) {
+export default function Home() {
   return (
     <div className="flex flex-col">
       <section
         className="min-h-140 flex items-center justify-center text-center px-10 py-16"
         style={{
-          background: `linear-gradient(to bottom, rgba(4,44,83,0.5) 0%, rgba(4,44,83,0.18) 60%, rgba(234,243,222,0.4) 100%),
-            url(${heroImage}) center/cover no-repeat`,
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className="max-w-xl">
